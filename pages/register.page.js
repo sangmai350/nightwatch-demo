@@ -15,10 +15,12 @@ class RegisterPage extends BasePage {
   }
 
   acceptPrivacy() {
-    return client.waitForElementVisible(this.gdprIframe, 20000).frame('gdpr-consent-notice')
-      .waitForElementVisible(this.acceptButton)
-      .click(this.acceptButton)
-      .frameParent()
+    client.waitForElementVisible(this.gdprIframe, 10000, false, function () {
+      return client.frame('gdpr-consent-notice')
+        .waitForElementVisible(this.acceptButton)
+        .click(this.acceptButton)
+        .frameParent()
+    })
   }
 
   inputEmail(email) {

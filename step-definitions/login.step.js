@@ -6,7 +6,7 @@ let loginInfo = {};
 Given("I open Register site", async () => {
   this.browser = new RegisterPage();
   return this.browser.load();
-  // return await this.browser.acceptPrivacy();
+  return await this.browser.acceptPrivacy();
 });
 
 When("I input the email {string}", async (email) => {
