@@ -1,0 +1,28 @@
+{
+  "name": "nightwatch-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:demo": "nightwatch",
+    "pretest": "rm -rf report/ screenshots/; mkdir report/",
+    "test": "cucumber-js --require cucumber.conf.js --require step-definitions --format json:report/cucumber_report.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.0.0-rc.2",
+    "babel-eslint": "^10.1.0",
+    "chromedriver": "^97.0.0",
+    "eslint": "^8.6.0",
+    "eslint-plugin-jsonc": "^2.0.0",
+    "nightwatch": "^1.7.13",
+    "nightwatch-api": "^3.0.2"
+  },
+  "dependencies": {
+    "chai": "^4.3.4",
+    "cucumber": "^7.0.0-rc.0",
+    "cucumber-html-reporter": "^5.5.0",
+    "nightwatch-html-reporter": "^2.0.6"
+  }
+}
