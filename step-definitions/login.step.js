@@ -5,8 +5,8 @@ const LoginPage = require("../pages/login.page");
 let loginInfo = {};
 Given("I open Register site", async () => {
   this.browser = new RegisterPage();
-  this.browser.load();
-  return this.browser.acceptPrivacy();
+  return this.browser.load();
+  // return await this.browser.acceptPrivacy();
 });
 
 When("I input the email {string}", async (email) => {
