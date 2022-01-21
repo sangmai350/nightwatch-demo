@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test:demo": "nightwatch",
-    "pretest": "rm -rf report/ screenshots/; mkdir report/",
-    "test": "cucumber-js --require cucumber.conf.js --require step-definitions --format json:report/cucumber_report.json"
+    "pretest": "rimraf report/ screenshots/",
+    "report:dir": "npx mkdirp report",
+    "test": "npm run report:dir && cucumber-js --require cucumber.conf.js --require step-definitions --format json:report/cucumber_report.json",
+    "test:api": "npm run report:dir && cucumber-js --require cucumber.conf.js --tags '@api' --require step-definitions --format json:report/cucumber_report.json"
   },
   "author": "",
   "license": "ISC",
@@ -20,9 +22,11 @@
     "nightwatch-api": "^3.0.2"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "chai": "^4.3.4",
     "cucumber": "^7.0.0-rc.0",
     "cucumber-html-reporter": "^5.5.0",
+    "mkdirp": "^1.0.4",
     "nightwatch-html-reporter": "^2.0.6"
   }
 }

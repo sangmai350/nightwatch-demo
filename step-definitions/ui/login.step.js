@@ -1,6 +1,6 @@
 const { Given, Then, When } = require("@cucumber/cucumber");
-const RegisterPage = require("../pages/register.page");
-const LoginPage = require("../pages/login.page");
+const RegisterPage = require("../../pages/register.page");
+const LoginPage = require("../../pages/login.page");
 
 let loginInfo = {};
 Given("I open Register site", async () => {
