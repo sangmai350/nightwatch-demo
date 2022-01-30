@@ -2,11 +2,22 @@ const { default: axios } = require('axios');
 const { client } = require('nightwatch-api');
 const BaseAPI = require('./base.api');
 
-class UsersAPI extends BaseAPI {
 
+class UsersAPI extends BaseAPI {
   constructor() {
     super();
     this._users = "/users";
+  }
+
+  async queryCustomerFromDB(userId) {
+    try {
+      let mssql = await this.connectToMSSql();
+      let result = await mssql.request().query(`select * from dbo.Customers where CustomerID = ${userId}`);
+      console.log(result);
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async getUsersById(userId) {
