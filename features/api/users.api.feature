@@ -27,3 +27,12 @@ Feature: API Testing at https://reqres.in/
         Then I get response from server
             | name | sang-mohan-updated |
             | job  | leader-updated     |
+
+
+    Scenario: Test Stripe API
+        When Send request to Stripe
+        Then I get response code from Stripe is "200"
+        Then I get response from Stripe
+            | statusCode    | 200            |
+            | statusMessage | OK             |
+            | serverName    | api.stripe.com |

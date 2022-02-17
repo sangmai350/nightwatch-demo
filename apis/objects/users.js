@@ -1,6 +1,4 @@
 class User {
-
-    name
-
+  name;
 }
 module.exports = User;

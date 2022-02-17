@@ -1,8 +1,9 @@
 const { Given, Then, When } = require("@cucumber/cucumber");
 const UsersAPI = require("../../apis/users.api");
+const StripeAPI = require("../../apis/stripe.api");
 const expect = require("chai").expect;
 
-let usersResponse, userId, customerQuery;
+let usersResponse, userId, customerQuery, stripeResponse;
 this.browser = new UsersAPI();
 
 When("Send GET single user with id {string}", async (userId) => {
@@ -52,6 +53,28 @@ When("Query Customer Details with CustomerId {string}", async (customerId) => {
 Then("I get response from Database", async (table) => {
   const expectedResult = table.rowsHash();
   const actualResult = customerQuery.recordset[0];
+  expect(expectedResult).to.deep.equal(
+    expectedResult,
+    `${actualResult} is not equal with ${expectedResult}`
+  );
+});
+
+When("Send request to Stripe", async () => {
+  this.browser = new StripeAPI();
+  stripeResponse = await this.browser.stripeTest();
+});
+
+Then("I get response code from Stripe is {string}", async (resCode) => {
+  const actualStatusCode = stripeResponse.status.toString();
+  expect(resCode).equal(
+    actualStatusCode,
+    `${resCode} is not equal with ${actualStatusCode}`
+  );
+});
+
+Then("I get response from Stripe", async (table) => {
+  const expectedResult = table.rowsHash();
+  const actualResult = stripeResponse;
   expect(expectedResult).to.deep.equal(
     expectedResult,
     `${actualResult} is not equal with ${expectedResult}`

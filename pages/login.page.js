@@ -1,14 +1,13 @@
-const { client } = require('nightwatch-api');
-const expect = require('chai').expect;
-const BasePage = require('./base.page');
+const { client } = require("nightwatch-api");
+const expect = require("chai").expect;
+const BasePage = require("./base.page");
 
 class LoginPage extends BasePage {
-  url = 'https://demo.guru99.com/v4';
+  url = "https://demo.guru99.com/v4";
   userId = "input[name='uid']";
   password = "input[name='password']";
   loginButton = "input[name='btnLogin']";
   welcomeText = ".heading3 td";
-
 
   load() {
     return client.url(this.url);
@@ -38,12 +37,15 @@ class LoginPage extends BasePage {
 
   async verifyWelcomeScreenIsDisplay(userId) {
     let actualText;
-    let expectedText = `Manger Id : ${userId}`
+    let expectedText = `Manger Id : ${userId}`;
     client.waitForElementVisible(this.welcomeText);
     await client.getText(this.welcomeText, function (res) {
       actualText = res.value;
     });
-    expect(actualText).equal(expectedText, `${actualText} is not equal with ${expectedText}`);
+    expect(actualText).equal(
+      expectedText,
+      `${actualText} is not equal with ${expectedText}`
+    );
   }
 }
 module.exports = LoginPage;

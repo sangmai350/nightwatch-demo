@@ -8,7 +8,7 @@ class RegisterPage extends BasePage {
   userId = "//td[contains(.,'User ID :')]/following-sibling::td";
   password = "//td[contains(.,'Password :')]/following-sibling::td";
   gdprIframe = "#gdpr-consent-notice";
-  acceptButton = "#save"
+  acceptButton = "#save";
 
   load() {
     return client.url(this.url);
@@ -16,11 +16,12 @@ class RegisterPage extends BasePage {
 
   acceptPrivacy() {
     client.waitForElementVisible(this.gdprIframe, 10000, false, function () {
-      return client.frame('gdpr-consent-notice')
+      return client
+        .frame("gdpr-consent-notice")
         .waitForElementVisible(this.acceptButton)
         .click(this.acceptButton)
-        .frameParent()
-    })
+        .frameParent();
+    });
   }
 
   inputEmail(email) {

@@ -29,6 +29,8 @@
     "cucumber-html-reporter": "^5.5.0",
     "mkdirp": "^1.0.4",
     "mssql": "^7.3.0",
-    "nightwatch-html-reporter": "^2.0.6"
+    "nightwatch-html-reporter": "^2.0.6",
+    "stripe": "^8.203.0",
+    "tinify": "^1.6.1"
   }
 }

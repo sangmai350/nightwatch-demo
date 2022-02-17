@@ -1,13 +1,14 @@
-const { client } = require('nightwatch-api');
+const { client } = require("nightwatch-api");
 const env = require("../env/api.ENV");
-const { default: axios } = require('axios');
+const { default: axios } = require("axios");
 const sql = require("mssql");
+
 // config for your database
 const config = {
-  user: 'sa',
-  password: 'Abcd123@',
-  server: 'localhost',
-  database: 'master',
+  user: "sa",
+  password: "Abcd123@",
+  server: "localhost",
+  database: "master",
   options: {
     trustedConnection: true,
     encrypt: true,
@@ -16,7 +17,6 @@ const config = {
   },
 };
 class BaseAPI {
-
   constructor() {
     if (this.constructor === BaseAPI) {
       throw new Error("Abstract classes can't be instantiated.");
@@ -26,11 +26,10 @@ class BaseAPI {
   }
 
   async connectToMSSql() {
-    sql.on('error', err => {
+    sql.on("error", (err) => {
       console.log(err);
-    })
+    });
     return await sql.connect(config);
   }
-
 }
 module.exports = BaseAPI;
