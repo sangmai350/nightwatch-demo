@@ -1,11 +1,12 @@
 const { default: axios } = require("axios");
 const { client } = require("nightwatch-api");
 const BaseAPI = require("./base.api");
+const env = require("../env/api.ENV");
 
 class UsersAPI extends BaseAPI {
   constructor() {
     super();
-    this._users = "/users";
+    this._users = `${env.userBaseUrl}/users`;
   }
 
   async queryCustomerFromDB(userId) {
@@ -24,8 +25,8 @@ class UsersAPI extends BaseAPI {
   async getUsersById(userId) {
     try {
       const _url = `${this._users}/${userId}`;
-      const response = await axios.get(_url);
-      return response;
+      this.response = await axios.get(_url);
+      return this.response;
     } catch (error) {
       console.error(error);
     }
@@ -33,8 +34,8 @@ class UsersAPI extends BaseAPI {
 
   async createUser(userInfo) {
     try {
-      const response = await axios.post(this._users, userInfo);
-      return response;
+      this.response = await axios.post(this._users, userInfo);
+      return this.response;
     } catch (error) {
       console.error(error);
     }
@@ -43,8 +44,8 @@ class UsersAPI extends BaseAPI {
   async updateUser(userInfo, userId) {
     try {
       const _url = `${this._users}/${userId}`;
-      const response = await axios.put(_url, userInfo);
-      return response;
+      this.response = await axios.put(_url, userInfo);
+      return this.response;
     } catch (error) {
       console.error(error);
     }

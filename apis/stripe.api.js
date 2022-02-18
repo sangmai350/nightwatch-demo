@@ -15,9 +15,6 @@ class StripeAPI extends BaseAPI {
       const customer = await stripe.customers.create({
         email: "customer@example.com",
       });
-      // console.log(customer.lastResponse.statusCode);
-      // console.log(customer.lastResponse.statusMessage);
-      // console.log(customer.lastResponse.servername);
       return {
         status: customer.lastResponse.statusCode,
         statusMessage: customer.lastResponse.statusMessage,

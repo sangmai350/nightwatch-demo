@@ -1,15 +1,14 @@
-@api
+@api1
 Feature: API Testing at https://reqres.in/
 
     Scenario: Get Users Details
         When Send GET single user with id "2"
         Then I get response code is "200"
-        Then I get response from server
-            | id         | 2                                       |
+        Then I get response from request
             | email      | janet.weaver@reqres.in                  |
             | first_name | Janet                                   |
             | last_name  | Weaver                                  |
-            | avata      | https://reqres.in/img/faces/2-image.jpg |
+            | avatar     | https://reqres.in/img/faces/2-image.jpg |
 
     Scenario: Create a New Users
         When Send POST user with
@@ -28,11 +27,8 @@ Feature: API Testing at https://reqres.in/
             | name | sang-mohan-updated |
             | job  | leader-updated     |
 
-
     Scenario: Test Stripe API
         When Send request to Stripe
         Then I get response code from Stripe is "200"
         Then I get response from Stripe
-            | statusCode    | 200            |
-            | statusMessage | OK             |
-            | serverName    | api.stripe.com |
+            | statusMessage | OK |
